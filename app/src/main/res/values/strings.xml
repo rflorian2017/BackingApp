@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BackingApp</string>
+    <string name="recipe_image">Recipe Image</string>
+    <string name="recipe_name_tv">Recipe Name</string>
+    <string name="title_recipe_detail_activity">Recipe Detail</string>
+    <string name="string_recipe_ingredients">Ingredients</string>
+</resources>
