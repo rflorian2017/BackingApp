@@ -21,8 +21,8 @@ public class RecipeDetailFragment extends Fragment {
 //    @BindView(R.id.textViewRecipeName)
 //    TextView recipeName;
 
-    @BindView(R.id.rv_recipe_detail)
-    RecyclerView mRecipeDetailsRecyclerView;
+//    @BindView(R.id.rv_recipe_detail)
+//    RecyclerView mRecipeDetailsRecyclerView;
 
     private Recipe passedRecipe;
 
@@ -33,15 +33,15 @@ public class RecipeDetailFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recipe, container, false);
-
-        ButterKnife.bind(this, view);
-
-        Intent intent = getActivity().getIntent();
-        passedRecipe = intent.getParcelableExtra(RecipeDetailActivity.RECIPE_PARCEL);
-        getActivity().setTitle(passedRecipe.getRecipeName());
-
-        //recipeName.setText(passedRecipe.getRecipeName());
-        return view;
+//        View view = inflater.inflate(R.layout.fragment_recipe, container, false);
+//
+//        ButterKnife.bind(this, view);
+//
+//        Intent intent = getActivity().getIntent();
+//        passedRecipe = intent.getParcelableExtra(RecipeDetailActivity.RECIPE_PARCEL);
+//        getActivity().setTitle(passedRecipe.getRecipeName());
+//
+//        //recipeName.setText(passedRecipe.getRecipeName());
+        return null;
     }
 }
