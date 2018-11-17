@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.widget.Toast;
 
 import com.example.roby.backingapp.adapters.RecipeAdapter;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
     private static final String CHECK_INTERNET_CONNECTION = "Please check the internet connection";
     private static final int SPAN_COUNT = 2;
+    private static final int RECIPE_CARD_WIDTH = 1000; //recipe card has 1080dp width
 
     private RecipeAdapter mRecipeAdapter;
 
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         ButterKnife.bind(this);
 
         //set the layout manager to grid
-        GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, calculateColumnNumber());//, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setHasFixedSize(true);
@@ -63,6 +65,18 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
                 showErrorMessage();
             }
         });
+    }
+
+    //compute number of columns based on screen size
+    // https://stackoverflow.com/questions/1016896/get-screen-dimensions-in-pixels
+    public int calculateColumnNumber() {
+        DisplayMetrics dm = this.getResources().getDisplayMetrics();
+        float dpWidth = dm.density * dm.widthPixels;
+
+        int columnNumber = dm.widthPixels / RECIPE_CARD_WIDTH;
+
+        // we want to have at least one column
+        return columnNumber < 1 ? 1: columnNumber;
     }
 
     /**

@@ -12,26 +12,35 @@ import com.example.roby.backingapp.model.Recipe;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    private ImageView mRecipeImage;
-    private TextView mRecipeName;
+
+    @BindView(R.id.recipe_name_tv)
+    TextView mRecipeName;
+
+    @BindView(R.id.recipe_number_of_steps)
+    TextView mNumberOfRecipeSteps;
+
     private List<Recipe> mRecipes;
     RecipeAdapter.RecipeAdapterOnClickHandler mClickHandler;
 
     public RecipeViewHolder(@NonNull View itemView, RecipeAdapter.RecipeAdapterOnClickHandler clickHandler) {
         super(itemView);
-        //mRecipeImage = itemView.findViewById(R.id.recipe_iv);
-        mRecipeName = itemView.findViewById(R.id.recipe_name_tv);
+
+        ButterKnife.bind(this, itemView);
+
         this.mClickHandler = clickHandler;
         itemView.setOnClickListener(this);
     }
 
-    public ImageView getmRecipeImage() {
-        return mRecipeImage;
-    }
-
     public TextView getmRecipeName() {
         return mRecipeName;
+    }
+
+    public TextView getmNumberOfRecipeSteps() {
+        return mNumberOfRecipeSteps;
     }
 
     public void setRecipes(List<Recipe> recipes) {
@@ -41,7 +50,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View v) {
         int adapterPosition = getAdapterPosition();
-        Recipe movie = mRecipes.get(adapterPosition);
-        mClickHandler.onClick(movie);
+        Recipe recipe = mRecipes.get(adapterPosition);
+        mClickHandler.onClick(recipe);
     }
 }

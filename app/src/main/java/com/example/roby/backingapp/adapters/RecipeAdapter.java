@@ -16,6 +16,7 @@ import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    final private String NUMBER_OF_STEPS_TEXT = "Number of steps:";
     // Store a member variable for the Recipes
     private List<Recipe> items;
 
@@ -37,7 +38,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     // Pass in the click handler to the constructor
     public RecipeAdapter(RecipeAdapterOnClickHandler clickHandler) {
-        mClickHandler = clickHandler;
+        this.mClickHandler = clickHandler;
     }
 
     @NonNull
@@ -62,6 +63,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         RecipeViewHolder recipeViewModel = (RecipeViewHolder) viewHolder;
         recipeViewModel.getmRecipeName().setText(items.get(position).getRecipeName());
+        recipeViewModel.getmNumberOfRecipeSteps().setText(NUMBER_OF_STEPS_TEXT + items.get(position).getmRecipeSteps().size());
     }
 
     @Override

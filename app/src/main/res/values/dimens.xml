@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_section">10dp</dimen>
+    <dimen name="text_size_section">20sp</dimen>
+    <dimen name="recipe_card_height">200dp</dimen>
+    <dimen name="recipe_name_text_size">20sp</dimen>
+    <dimen name="recipe_step_card_height">100dp</dimen>
+    <dimen name="ingredient_section_size">20sp</dimen>
+    <dimen name="recipe_step_card_margin">5dp</dimen>
+    <dimen name="recipe_step_video_step_height">300dp</dimen>
+    <dimen name="navigation_pane_height">100dp</dimen>
+    <dimen name="width_layout_tablet">400dp</dimen>
 </resources>

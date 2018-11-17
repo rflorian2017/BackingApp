@@ -7,20 +7,19 @@ import android.widget.TextView;
 
 import com.example.roby.backingapp.R;
 
-public class RecipeIngredientViewHolder extends ViewHolder implements View.OnClickListener{
-    private TextView recipeIngredients;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class RecipeIngredientViewHolder extends ViewHolder{
+    @BindView(R.id.ingredients_list_tv)
+    TextView recipeIngredientsTv;
 
     public RecipeIngredientViewHolder(@NonNull View itemView) {
         super(itemView);
-        recipeIngredients = itemView.findViewById(R.id.section_recipe_detail);
-        itemView.setOnClickListener(this);
+        ButterKnife.bind(this,itemView);
     }
 
-    @Override
-    public void onClick(View v) {
-        openIngredientsIntent();
-    }
-
-    private void openIngredientsIntent() {
+    public TextView getRecipeIngredientsTv() {
+        return recipeIngredientsTv;
     }
 }

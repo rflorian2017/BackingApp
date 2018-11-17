@@ -1,4 +1,4 @@
-package com.example.roby.backingapp.ui;
+package com.example.roby.backingapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -4,4 +4,10 @@
     <string name="recipe_name_tv">Recipe Name</string>
     <string name="title_recipe_detail_activity">Recipe Detail</string>
     <string name="string_recipe_ingredients">Ingredients</string>
+    <string name="recipe_name">Recipe name</string>
+    <string name="recipe_number_steps">Number of steps</string>
+    <string name="string_recipe_step">Recipe step description</string>
+    <string name="ingredient_section">Ingredients:</string>
+    <string name="load_next_step">Load next step</string>
+    <string name="load_previous_step">Load previous step</string>
 </resources>
