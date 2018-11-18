@@ -18,12 +18,12 @@ public class RecipeDetailActivity extends AppCompatActivity implements
         RecipeMasterListFragment.OnActionClickListener, RecipeStepFragment.OnNextStepClickListener,
 RecipeStepFragment.OnPreviousStepClickListener{
 
-    private Recipe passedRecipe;
+    private static Recipe passedRecipe;
     //store the recipe step for the navigation
     private RecipeStep selectedStep;
     private boolean mTwoPane;
 
-    // store indexe of selected step
+    // store index of selected step
     private int selectedStepIndex;
 
     @BindView(R.id.rv_recipe_details)
@@ -44,10 +44,14 @@ RecipeStepFragment.OnPreviousStepClickListener{
         }
         else {
             selectedStepIndex = savedInstanceState.getInt(RECIPE_STEP_INDEX);
-
+            selectedStep = savedInstanceState.getParcelable(RECIPE_STEP_PARCEL);
+            passedRecipe = savedInstanceState.getParcelable(RECIPE_PARCEL);
         }
 
         setContentView(R.layout.activity_recipe_detail);
+
+        //set title of activity to recipe name
+        this.getSupportActionBar().setTitle(passedRecipe.getRecipeName());
 
         //check if we are in two pane layout
         if(findViewById(R.id.tablet_layout_view) !=null) {
@@ -133,6 +137,10 @@ RecipeStepFragment.OnPreviousStepClickListener{
         fm.beginTransaction()
                 .add(R.id.recipe_step_layout, recipeStepFragment)
                 .commit();
+    }
+
+    public static Recipe getPassedRecipe() {
+        return passedRecipe;
     }
 
     @Override

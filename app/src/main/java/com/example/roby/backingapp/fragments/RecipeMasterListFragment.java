@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.roby.backingapp.R;
 import com.example.roby.backingapp.adapters.RecipeDetailAdapter;
@@ -63,6 +64,14 @@ public class RecipeMasterListFragment extends Fragment implements RecipeDetailAd
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Bundle bundle = this.getArguments();
+        if (bundle !=null) {
+            passedRecipe = bundle.getParcelable(RecipeDetailActivity.RECIPE_PARCEL);
+        }
+        else {
+            passedRecipe = this.getActivity().getIntent().getParcelableExtra(RecipeDetailActivity.RECIPE_PARCEL);
+        }
+
         final View rootView = inflater.inflate(R.layout.fragment_recipe, container, false);
 
         ButterKnife.bind(this, rootView);
@@ -72,10 +81,6 @@ public class RecipeMasterListFragment extends Fragment implements RecipeDetailAd
         mRecipeDetailsRecyclerView.setLayoutManager(layoutManager);
 
         mRecipeDetailsRecyclerView.setHasFixedSize(true);
-
-        Intent intent = getActivity().getIntent();
-        passedRecipe = intent.getParcelableExtra(RecipeDetailActivity.RECIPE_PARCEL);
-        this.getActivity().setTitle(passedRecipe.getRecipeName());
 
         mRecipeDetailAdapter = new RecipeDetailAdapter(passedRecipe.getmRecipeSteps(), passedRecipe, this);
         mRecipeDetailsRecyclerView.setAdapter(mRecipeDetailAdapter);
