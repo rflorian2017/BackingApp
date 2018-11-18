@@ -33,7 +33,7 @@ public class RecipeStepViewHolder extends RecyclerView.ViewHolder implements Vie
     @Override
     public void onClick(View v) {
         int adapterPosition = getAdapterPosition();
-        RecipeStep recipeStep =  mRecipeSteps.get(adapterPosition);
+        RecipeStep recipeStep =  mRecipeSteps.get(adapterPosition - 1) ; // - 1 , as the first is an ingredient
         mClickHandler.onClick(recipeStep);
     }
 

@@ -30,7 +30,7 @@ RecipeStepFragment.OnPreviousStepClickListener{
     RecyclerView mRecipeDetailsRecyclerView;
 
     public static final String RECIPE_PARCEL = "recipe_parcel";
-    public static final String RECIPE_STEP_PARCEL = "recipe_parcel";
+    public static final String RECIPE_STEP_PARCEL = "recipe_step_parcel";
     public static final String RECIPE_STEP_INDEX = "recipe_step_index";
     public static final String RECIPE_BUNDLE = "recipe_bundle";
     public static final String TWO_PANE_BUNDLE = "two_pane";
@@ -95,7 +95,7 @@ RecipeStepFragment.OnPreviousStepClickListener{
 
         else {
             Intent intent = new Intent(this, RecipeStepDetailActivity.class);
-            bundle.putBoolean(TWO_PANE_BUNDLE, !mTwoPane);
+            bundle.putBoolean(TWO_PANE_BUNDLE, mTwoPane);
             intent.putExtra(RECIPE_BUNDLE, bundle);
             startActivity(intent);
         }

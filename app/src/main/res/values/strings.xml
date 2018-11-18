@@ -10,4 +10,5 @@
     <string name="ingredient_section">Ingredients:</string>
     <string name="load_next_step">Load next step</string>
     <string name="load_previous_step">Load previous step</string>
+    <string name="title_recipe_step_detail_activity">Recipe step detail</string>
 </resources>
