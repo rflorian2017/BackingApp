@@ -16,6 +16,7 @@ import com.example.roby.backingapp.adapters.RecipeAdapter;
 import com.example.roby.backingapp.model.Recipe;
 import com.example.roby.backingapp.model.RecipeViewModel;
 import com.example.roby.backingapp.ui.RecipeDetailActivity;
+import com.example.roby.backingapp.utils.Utils;
 
 
 import butterknife.BindView;
@@ -26,9 +27,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     @BindView
    (R.id.rv_recipes) RecyclerView mRecyclerView;
 
-    private static final String CHECK_INTERNET_CONNECTION = "Please check the internet connection";
     private static final int SPAN_COUNT = 2;
-    private static final int RECIPE_CARD_WIDTH = 1000; //recipe card has 1080dp width
 
     private RecipeAdapter mRecipeAdapter;
 
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         if (isConnected) {
 
         } else
-            Toast.makeText(this, CHECK_INTERNET_CONNECTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, Utils.CHECK_INTERNET_CONNECTION, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         ButterKnife.bind(this);
 
         //set the layout manager to grid
-        GridLayoutManager layoutManager = new GridLayoutManager(this, calculateColumnNumber());//, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, Utils.calculateColumnNumber(this, Utils.RECIPE_CARD_WIDTH));//, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setHasFixedSize(true);
@@ -67,17 +66,6 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         });
     }
 
-    //compute number of columns based on screen size
-    // https://stackoverflow.com/questions/1016896/get-screen-dimensions-in-pixels
-    public int calculateColumnNumber() {
-        DisplayMetrics dm = this.getResources().getDisplayMetrics();
-        float dpWidth = dm.density * dm.widthPixels;
-
-        int columnNumber = dm.widthPixels / RECIPE_CARD_WIDTH;
-
-        // we want to have at least one column
-        return columnNumber < 1 ? 1: columnNumber;
-    }
 
     /**
      * Used to transfer the data between the main activity and the detail activity

@@ -34,6 +34,7 @@ public class RecipeStepDetailActivity extends AppCompatActivity implements Recip
         selectedRecipe = bundle.getParcelable(RecipeDetailActivity.RECIPE_PARCEL);
 
         setContentView(R.layout.activity_step_detail);
+        getSupportActionBar().setTitle(selectedRecipe.getRecipeName());
         RecipeStepFragment recipeStepFragment = new RecipeStepFragment();
 
         //set bundle for the passed data

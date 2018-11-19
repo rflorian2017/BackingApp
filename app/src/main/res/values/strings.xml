@@ -11,4 +11,7 @@
     <string name="load_next_step">Load next step</string>
     <string name="load_previous_step">Load previous step</string>
     <string name="title_recipe_step_detail_activity">Recipe step detail</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="activity_widget_config">WIdget configuration</string>
 </resources>

@@ -48,13 +48,13 @@ RecipeStepFragment.OnPreviousStepClickListener{
             passedRecipe = savedInstanceState.getParcelable(RECIPE_PARCEL);
         }
 
-        setContentView(R.layout.activity_recipe_detail);
-
         //set title of activity to recipe name
         this.getSupportActionBar().setTitle(passedRecipe.getRecipeName());
 
+        setContentView(R.layout.activity_recipe_detail);
+
         //check if we are in two pane layout
-        if(findViewById(R.id.tablet_layout_view) !=null) {
+        if(findViewById(R.id.tablet_layout_view) != null) {
             mTwoPane = true;
             selectedStep = passedRecipe.getmRecipeSteps().get(selectedStepIndex);
 
@@ -69,7 +69,7 @@ RecipeStepFragment.OnPreviousStepClickListener{
             recipeStepFragment.setArguments(bundle);
 
             fm.beginTransaction()
-                    .add(R.id.recipe_step_layout, recipeStepFragment)
+                    .add(R.id.step_container, recipeStepFragment)
                     .commit();
         }
 
@@ -93,7 +93,7 @@ RecipeStepFragment.OnPreviousStepClickListener{
             recipeStepFragment.setArguments(bundle);
 
             fm.beginTransaction()
-                    .add(R.id.recipe_step_layout, recipeStepFragment)
+                    .add(R.id.step_container, recipeStepFragment)
                     .commit();
         }
 
@@ -135,7 +135,7 @@ RecipeStepFragment.OnPreviousStepClickListener{
         recipeStepFragment.setArguments(bundle);
 
         fm.beginTransaction()
-                .add(R.id.recipe_step_layout, recipeStepFragment)
+                .add(R.id.step_container, recipeStepFragment)
                 .commit();
     }
 
