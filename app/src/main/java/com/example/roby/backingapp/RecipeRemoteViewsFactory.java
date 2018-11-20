@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Binder;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -22,10 +23,11 @@ public class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
     private Context mContext;
     private int mAppWidgetId;
     private int recipeId;
+    private List<Recipe> recipes = new ArrayList<Recipe>();
 
     public RecipeRemoteViewsFactory(Context context, Intent intent) {
         mContext = context;
-        mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+        mAppWidgetId = intent.getIntExtra(Utils.APP_WIDGET,
                 AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 
@@ -40,12 +42,13 @@ public class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     @Override
     public void onDataSetChanged() {
+        final long identityToken = Binder.clearCallingIdentity();
         URL recipeUrl = NetworkUtils.buildURL();
 
         try {
             String jsonWeatherResponse = NetworkUtils
                     .getResponseFromHttpUrl(recipeUrl);
-            List<Recipe> recipes = JsonUtils.getRecipes(jsonWeatherResponse);
+            recipes = JsonUtils.getRecipes(jsonWeatherResponse);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,8 +56,10 @@ public class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
         }
 
         //get recipe id from shared prefs
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(Utils.PREF_RECIPE_NAME + mAppWidgetId, Context.MODE_PRIVATE);
-        recipeId = sharedPreferences.getInt(Utils.PREF_RECIPE_NAME + mAppWidgetId, -1);
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(Utils.PREFERENCE_RECIPE_NAME + mAppWidgetId, Context.MODE_PRIVATE);
+        recipeId = sharedPreferences.getInt(Utils.PREFERENCE_RECIPE_NAME + mAppWidgetId, -1);
+
+        Binder.restoreCallingIdentity(identityToken);
     }
 
     @Override

@@ -93,7 +93,7 @@ RecipeStepFragment.OnPreviousStepClickListener{
             recipeStepFragment.setArguments(bundle);
 
             fm.beginTransaction()
-                    .add(R.id.step_container, recipeStepFragment)
+                    .replace(R.id.step_container, recipeStepFragment)
                     .commit();
         }
 
@@ -135,7 +135,7 @@ RecipeStepFragment.OnPreviousStepClickListener{
         recipeStepFragment.setArguments(bundle);
 
         fm.beginTransaction()
-                .add(R.id.step_container, recipeStepFragment)
+                .replace(R.id.step_container, recipeStepFragment)
                 .commit();
     }
 

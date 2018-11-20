@@ -26,7 +26,6 @@ import butterknife.ButterKnife;
 
 public class RecipeWidgetConfigureActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterOnClickHandler{
 
-    @BindView(R.id.widget_recipe_list_rv)
     RecyclerView mRecyclerViewRecipeList;
 
     RecipeAdapter mRecipeAdapter;
@@ -37,11 +36,11 @@ public class RecipeWidgetConfigureActivity extends AppCompatActivity implements 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ButterKnife.bind(this);
         setResult(RESULT_CANCELED);
         // activity stuffs
         setContentView(R.layout.activity_widget_configure);
 
+        mRecyclerViewRecipeList = findViewById(R.id.widget_recipe_list_rv);
         //set the layout manager to grid
         GridLayoutManager layoutManager = new GridLayoutManager(this, Utils.calculateColumnNumber(this, Utils.RECIPE_CARD_WIDTH));//, GridLayoutManager.VERTICAL, false);
         mRecyclerViewRecipeList.setLayoutManager(layoutManager);
