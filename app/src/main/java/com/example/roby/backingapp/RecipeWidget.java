@@ -6,27 +6,23 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
 
 import com.example.roby.backingapp.ui.RecipeDetailActivity;
-import com.example.roby.backingapp.ui.RecipeWidgetConfigureActivity;
 import com.example.roby.backingapp.utils.Utils;
-
-import java.util.Random;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class RecipeWidget extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                       int appWidgetId) {
 
         //get recipe name from shared preferences
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Utils.PREFERENCE_RECIPE_NAME, Context.MODE_PRIVATE);
-        String widgetText = sharedPreferences.getString(Utils.PREFERENCE_RECIPE_NAME, "");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Utils.PREFERENCE_RECIPE_ID, Context.MODE_PRIVATE);
+        String widgetText = sharedPreferences.getString(Utils.APP_WIDGET_RECIPE_NAME_PREFERENCE + appWidgetId, "");
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_widget);
         views.setTextViewText(R.id.appwidget_recipe_name, widgetText);

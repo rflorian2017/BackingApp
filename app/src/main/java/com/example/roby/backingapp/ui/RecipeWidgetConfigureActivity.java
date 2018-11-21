@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,13 +15,12 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.roby.backingapp.R;
+import com.example.roby.backingapp.RecipeWidget;
 import com.example.roby.backingapp.adapters.RecipeAdapter;
+import com.example.roby.backingapp.model.Ingredient;
 import com.example.roby.backingapp.model.Recipe;
 import com.example.roby.backingapp.model.RecipeViewModel;
 import com.example.roby.backingapp.utils.Utils;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 //https://medium.com/android-bits/android-widgets-ad3d166458d3
 
@@ -70,8 +70,16 @@ public class RecipeWidgetConfigureActivity extends AppCompatActivity implements 
 
     @Override
     public void onClick(Recipe param) {
+        final Context context = RecipeWidgetConfigureActivity.this;
+
+        SharedPreferences.Editor sharedPreferences = context.getSharedPreferences(Utils.PREFERENCE_RECIPE_ID, 0).edit();
+        sharedPreferences.putInt(Utils.PREFERENCE_RECIPE_ID + mAppWidgetId, Integer.parseInt(param.getId()));
+        sharedPreferences.putString(Utils.APP_WIDGET_RECIPE_NAME_PREFERENCE + mAppWidgetId, param.getRecipeName());
+        sharedPreferences.apply();
+
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        //appWidgetManager.updateAppWidget(mAppWidgetId, views);
+        RecipeWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+
         Intent resultValue = new Intent();
         // Set the results as expected from a 'configure activity'.
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);

@@ -35,9 +35,9 @@
             android:label="@string/title_recipe_step_detail_activity"
             android:parentActivityName=".ui.RecipeDetailActivity"
             android:theme="@style/AppTheme">
-            <meta-data
+            <!--meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.RecipeDetailActivity" />
+                android:value=".ui.RecipeDetailActivity" /-->
         </activity>
 
         <activity android:name=".ui.RecipeWidgetConfigureActivity">

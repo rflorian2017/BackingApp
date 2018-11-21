@@ -7,9 +7,11 @@ public class Utils {
 
     public static final int RECIPE_CARD_WIDTH = 1000; //recipe card has 1080dp width
     public static final String CHECK_INTERNET_CONNECTION = "Please check the internet connection";
-    public static final String PREFERENCE_RECIPE_NAME = "RECIPE_NAME";
+    public static final String PREFERENCE_RECIPE_ID = "RECIPE_NAME";
     public static final String APP_WIDGET = "APP_WIDGET";
+    public static final String APP_WIDGET_RECIPE_NAME_PREFERENCE = "APP_WIDGET_RECIPE_NAME";
     public static final String APP_WIDGET_ID = "APP_WIDGET_ID";
+    public static final String APP_WIDGET_RECIPE_INGREDIENTS = "APP_WIDGET_ID";
 
     //compute number of columns based on screen size
     // https://stackoverflow.com/questions/1016896/get-screen-dimensions-in-pixels

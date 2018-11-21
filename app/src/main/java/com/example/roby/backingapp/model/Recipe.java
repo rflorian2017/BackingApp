@@ -76,4 +76,8 @@ public class Recipe implements Parcelable {
     public List<RecipeStep> getmRecipeSteps() {
         return mRecipeSteps;
     }
+
+    public String getId() {
+        return id;
+    }
 }

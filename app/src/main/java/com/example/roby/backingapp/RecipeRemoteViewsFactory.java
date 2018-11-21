@@ -36,8 +36,6 @@ public class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
         // In onCreate() you set up any connections / cursors to your data source. Heavy lifting,
         // for example downloading or creating content etc, should be deferred to onDataSetChanged()
         // or getViewAt(). Taking more than 20 seconds in this call will result in an ANR.
-
-
     }
 
     @Override
@@ -56,8 +54,8 @@ public class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
         }
 
         //get recipe id from shared prefs
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(Utils.PREFERENCE_RECIPE_NAME + mAppWidgetId, Context.MODE_PRIVATE);
-        recipeId = sharedPreferences.getInt(Utils.PREFERENCE_RECIPE_NAME + mAppWidgetId, -1);
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(Utils.PREFERENCE_RECIPE_ID + mAppWidgetId, Context.MODE_PRIVATE);
+        recipeId = sharedPreferences.getInt(Utils.PREFERENCE_RECIPE_ID + mAppWidgetId, -1);
 
         Binder.restoreCallingIdentity(identityToken);
     }
@@ -75,12 +73,16 @@ public class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     // Given the position (index) of a WidgetItem in the array, use the item's text value in
     // combination with the app widget item XML file to construct a RemoteViews object.
+    @Override
     public RemoteViews getViewAt(int position) {
         // position will always range from 0 to getCount() - 1.
 
         // Construct a RemoteViews item based on the app widget item XML file, and set the
         // text based on the position.
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.recipe_widget);
+        String ingredient = "";
+        ingredient += recipes.get(recipeId).getmIngredients().get(position);
+
 
 
 
